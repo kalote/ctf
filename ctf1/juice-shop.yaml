@@ -1,0 +1,83 @@
+kind: Template
+apiVersion: v1
+metadata:
+  name: juice-shop-app
+labels:
+  template: juice-shop-app
+objects:
+- kind: Route
+  apiVersion: v1
+  metadata:
+    labels:
+      app: "${NAME}"
+      router: internal
+    name: "${NAME}"
+  spec:
+    host: "juice-${NAME}.axa-li-jp-dev-int.pink.ap-southeast-1.aws.openpaas.axa-cloud.com"
+    port:
+      targetPort: 3000-tcp
+    tls:
+      insecureEdgeTerminationPolicy: Redirect
+      termination: edge
+    to:
+      kind: Service
+      name: "${NAME}"
+      weight: 100
+    wildcardPolicy: None
+- kind: Service
+  apiVersion: v1
+  metadata:
+    labels:
+      app: "${NAME}"
+    name: "${NAME}"
+  spec:
+    ports:
+      - name: 3000-tcp
+        port: 3000
+        protocol: TCP
+        targetPort: 3000
+    selector:
+      deploymentconfig: "${NAME}"
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    labels:
+      app: "${NAME}"
+    name: "${NAME}"
+  spec:
+    replicas: 1
+    selector:
+      app: "${NAME}"
+      deploymentconfig: "${NAME}"
+    strategy:
+      type: Rolling
+    template:
+      metadata:
+        labels:
+          app: "${NAME}"
+          deploymentconfig: "${NAME}"
+      spec:
+        containers:
+          - env:
+              - name: CTF_KEY
+                value: averysecretkey
+              - name: NODE_ENV
+                value: ctf
+            image: >-
+              bkimminich/juice-shop@sha256:59b82c8702a5a7f03039c46b9e00912ac9c6a1204dba981e38e45e550f85cda0
+            imagePullPolicy: Always
+            name: "${NAME}"
+            ports:
+              - containerPort: 3000
+                protocol: TCP
+            resources:
+              limits:
+                cpu: 170m
+                memory: 512Mi
+    triggers: {}
+parameters:
+- name: NAME
+  displayName: Name
+  description: The name of your application (will be assigned to all objects)
+  required: true
+  value: juice-shop

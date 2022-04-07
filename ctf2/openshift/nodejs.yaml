@@ -1,0 +1,231 @@
+kind: Template
+apiVersion: v1
+metadata:
+  name: nodejs-app
+  annotations:
+    openshift.io/display-name: Node.js
+    description: A Node.js application s2i builder using node8.
+    iconClass: icon-nodejs
+    openshift.io/long-description: This template defines resources needed to develop
+      a NodeJS application, including a build configuration and application deployment
+      configuration. You can choose between version 6, 8 and 10 of nodeJS.
+message: |-
+  The following service(s) have been created in your project: ${NAME}.
+  The following route has been created in your project: ${CURRENT_NAMESPACE}.pink.ap-southeast-1.aws.openpaas.axa-cloud.com
+labels:
+  template: nodejs-app
+objects:
+- kind: Service
+  apiVersion: v1
+  metadata:
+    labels:
+      app: "${NAME}" 
+    name: "${NAME}"
+    annotations:
+      description: Exposes and load balances the application pods
+  spec:
+    ports:
+    - name: "web-${PORT}"
+      port: "${{PORT}}"
+      targetPort: "${{PORT}}"
+    selector:
+      name: "${NAME}"
+- kind: Route
+  apiVersion: v1
+  metadata:
+    name: "${NAME}"
+    labels: 
+      router: internal
+      app: "${NAME}" 
+  spec:
+    host: "${NAME}.${APP_ZONE}.pink.ap-southeast-1.aws.openpaas.axa-cloud.com"
+    to:
+      kind: Service
+      name: "${NAME}"
+    port:
+      targetPort: "web-${PORT}"
+    tls:
+      termination: edge
+      insecureEdgeTerminationPolicy: Redirect
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${NAME}"
+    labels:
+      app: "${NAME}" 
+    annotations:
+      description: Keeps track of changes in the application image
+- kind: BuildConfig
+  apiVersion: v1
+  metadata:
+    labels:
+      app: "${NAME}" 
+    name: "${NAME}"
+    annotations:
+      description: Defines how to build the application
+      template.alpha.openshift.io/wait-for-ready: 'true'
+  spec:
+    source:
+      type: Git
+      git:
+        uri: "${SOURCE_REPOSITORY_URL}"
+        ref: "${SOURCE_REPOSITORY_REF}"
+      sourceSecret:
+        name: "${SECRETNAME}"
+      contextDir: "${CONTEXT_DIR}"
+    strategy:
+      type: Source
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          namespace: jenkinsci-prod-axa-li-jp
+          name: s2i-nodejs-builder:${NODE_VER}-sf
+        env:
+        - name: http_proxy
+          value: "http://egress-proxy:8080"
+        - name: https_proxy
+          value: "http://egress-proxy:8080"
+        - name: HTTP_PROXY
+          value: "http://egress-proxy:8080"
+        - name: HTTPS_PROXY
+          value: "http://egress-proxy:8080"
+        - name: NO_PROXY
+          value: ".cluster.local,.svc.cluster.local,.internal,.oc.intraxa"
+        - name: no_proxy
+          value: ".cluster.local,.svc.cluster.local,.internal,.oc.intraxa"
+        - name: HTTP_PROXY_HOST
+          value: egress-proxy
+        - name: HTTP_PROXY_PORT
+          value: '8080'
+        - name: NODE_ENV
+          value: "${NODE_ENV}"
+        - name: NODE_NO_WARNINGS
+          value: '1'
+    resources:
+      limits:
+        memory: "${MEMORY_BUILD_LIMIT}"
+        cpu: "${CPU_BUILD_LIMIT}"
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "${NAME}:latest"
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    labels:
+      app: "${NAME}" 
+    name: "${NAME}"
+    annotations:
+      description: Defines how to deploy the application server
+      template.alpha.openshift.io/wait-for-ready: 'true'
+  spec:
+    strategy:
+      type: Rolling
+    replicas: 1
+    selector:
+      name: "${NAME}"
+    template:
+      metadata:
+        name: "${NAME}"
+        labels:
+          name: "${NAME}"
+      spec:
+        containers:
+        - name: ${NAME}
+          image: "10.96.154.119:5000/${CURRENT_NAMESPACE}/${NAME}:latest"
+          ports:
+          - containerPort: "${{PORT}}"
+          env:
+          - name: NPM_RUN
+            value: "${NPM_RUN_SCRIPT}"
+          readinessProbe:
+            timeoutSeconds: 3
+            initialDelaySeconds: 3
+            httpGet:
+              path: "/_meta/health"
+              port: "${{PORT}}"
+          livenessProbe:
+            timeoutSeconds: 3
+            initialDelaySeconds: 30
+            httpGet:
+              path: "/_meta/health"
+              port: "${{PORT}}"
+          resources:
+            limits:
+              memory: "${MEMORY_LIMIT}"
+parameters:
+- name: NAME
+  displayName: Name
+  description: The name of your application (will be assigned to all objects)
+  required: true
+  value: my-app
+- name: NODE_VER
+  displayName: Node version
+  description: The nodeJS version you want to use (version 6 & 8 & 10)
+  value: "8"
+- name: PORT
+  displayName: Port
+  description: The port of your application 
+  required: true
+  value: "8080"
+- name: NODE_ENV
+  displayName: Node Environment
+  description: The current environment passed as a NODE_ENV param
+  value: development
+- name: MEMORY_LIMIT
+  displayName: Memory Limit
+  description: Maximum amount of memory the container can use.
+  required: true
+  value: 150Mi
+- name: MEMORY_BUILD_LIMIT
+  displayName: Build Memory Limit
+  description: Maximum amount of memory the build container can use.
+  required: true
+  value: 300Mi
+- name: CPU_BUILD_LIMIT
+  displayName: Build CPU Limit
+  description: Maximum amount of CPU the build container can use (formula => Memory / 3).
+  required: true
+  value: 100m
+- name: SOURCE_REPOSITORY_URL
+  displayName: Git Repository URL
+  description: The URL of the repository with your application source code.
+  required: true
+- name: SECRETNAME
+  displayName: Secret name
+  description: The Name of the secret to use to access the github.axa.com repository
+  required: true
+  value: basicsecret
+- name: SOURCE_REPOSITORY_REF
+  displayName: Git Reference
+  description: Set this to a branch name, tag or other ref of your repository if you
+    are not using the default branch.
+- name: CONTEXT_DIR
+  displayName: Context Directory
+  description: Set this to the relative path to your project if it is not in the root
+    of your repository.
+- name: GITHUB_WEBHOOK_SECRET
+  displayName: GitHub Webhook Secret
+  description: Github trigger secret.  A difficult to guess string encoded as part
+    of the webhook URL.  Not encrypted.
+  generate: expression
+  from: "[a-zA-Z0-9]{40}"
+- name: GENERIC_WEBHOOK_SECRET
+  displayName: Generic Webhook Secret
+  description: A secret string used to configure the Generic webhook.
+  generate: expression
+  from: "[a-zA-Z0-9]{40}"
+- name: CURRENT_NAMESPACE
+  displayName: Current Project 
+  description: The current project used to deploy this template
+  required: true
+  value: my-project 
+- name: APP_ZONE
+  displayName: Application Zone
+  description: Your project application zone
+  required: true
+  value: axa-li-jp-dev-int
+- name: NPM_RUN_SCRIPT
+  displayName: Npm Run script name
+  description: The name of the script to run your application. default, start
+  value: start

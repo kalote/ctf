@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web1:
+    image: quay.io/kalote/axactf_nosql:1.0
+    ports:
+      - "5000:8080"
+    depends_on: 
+      - mongodb
+  
+  mongodb:
+    image: mongo:latest
+    restart: always

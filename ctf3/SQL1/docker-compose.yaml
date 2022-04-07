@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on: 
+      - mysql
+  
+  mysql:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: d4p4ssw0rd1
+      MYSQL_USER: ctfsql
+      MYSQL_PASSWORD: d4dbp4ssw0rd1
+      MYSQL_DATABASE: ctfsql
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d/

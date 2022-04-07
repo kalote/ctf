@@ -1,0 +1,21 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  labels:
+    app: juice-shop
+  name: juice-shop
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+        openshift.io/imported-from: bkimminich/juice-shop
+      from:
+        kind: DockerImage
+        name: bkimminich/juice-shop
+      generation: 2
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
