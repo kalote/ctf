@@ -1,4 +1,4 @@
-# AXA CTF3 - Software Engineering Summit
+# CTF3 - Software Engineering Summit
 
 ## Challenges
 
@@ -25,7 +25,7 @@
 ## Fun
 
 - FUN: crypto with a famous cypher
-- FUN 2: crypto with axa
+- FUN 2: like, really, super fun
 - FUN 3: Follow the guide 
 - UXUI: Try to finish this awful registration process
 
@@ -79,7 +79,7 @@ challenge:
 ### Fun 2
 
 challenge: 
-- String: aaxxxxaxaaaaxxxxaaxxxxaxaaxxxaaxaaaxaxxxaaxxaaxxaaaaxaaxaaaxxaaxxaaxaaaxxaaxaxxxaaaxxaxxxaaxaaaxxaaxxxaxaaxaaaxxaaxxaaaxaxaaaaaxaaxxxaaxaaaxxaxxaaaaxxaxaaaxxxxxaaaxaxxxxaaxxxxxaxaaaaaxxaaxxxaxxaaxxxxxxaaxxxaxaxaaaaaxaaaxaaaxxaaxxxaxxaaxaaaxaaxaxxxxaxaaaaaxaaxaaxaxaaaxaxaxaaxaaxxxxaaxaaaxxaaxxxaxaaaxxxxxaaxaaxxxxaaxxaaxaxaaaaaxaaaxxaaxaaaxaxxxxaaxxaaxaaaxxxxxaaaxxaaxaaaaaxa
+- String: 011000110110111101101101011100000110000101101110011110010110001101110100011001100111101101100011011100100111100101110000011101000011000001011111001100010111001101011111011001100111010101101110010111110110000101101110011001000101111101101110001100000111010001011111011000110110111101101101011100000110110001101001011000110011010001110100011001010110010001111101
 
 ### Fun 3
 

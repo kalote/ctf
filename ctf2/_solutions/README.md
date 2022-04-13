@@ -89,7 +89,7 @@ hex(m)
 ## UXUI
 
 - go through the website and find the flag at the end
-- flag: axa_ctf{th4t_w4s_th3_w0r5t_UI_p0ss1bl3_th4nk5}
+- flag: companyctf{th4t_w4s_th3_w0r5t_UI_p0ss1bl3_th4nk5}
 
 ## So much fun in the bucket
 

@@ -1,4 +1,4 @@
-# AXA CTF2
+# CTF2
 
 ## Challenges
 
@@ -15,7 +15,7 @@
 ## Fun
 
 - FUN: crypto with a famous cypher
-- FUN 2: crypto with axa
+- FUN 2: like, really, super fun
 - FUN 3: Follow the guide 
 
 Total: 820 points (740 without k8s)

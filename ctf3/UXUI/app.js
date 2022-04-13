@@ -1137,7 +1137,7 @@ exports.default = _vue2.default.extend({
 });
 
 },{"./template.html":30,"vue/dist/vue.min.js":92}],30:[function(require,module,exports){
-module.exports = "<div class=end-screen><h1 class=end-screen__title>You are awesome!</h1><h2 class=end-screen__subtitle>A true interface legend.</h2><img class=end-screen__image src=/images/carlton-dancing.gif alt=\"Carlton Dancing\"><p class=end-screen__text>Here is your fl4g (join it with '_'): (company)_(activity){th4t w4s th3 w0r5t UI p0ss1bl3 th4nk5}</p></div>";
+module.exports = "<div class=end-screen><h1 class=end-screen__title>You are awesome!</h1><h2 class=end-screen__subtitle>A true interface legend.</h2><img class=end-screen__image src=/images/carlton-dancing.gif alt=\"Carlton Dancing\"><p class=end-screen__text>Here is your fl4g (join it with '_'): (company){th4t w4s th3 w0r5t UI p0ss1bl3 th4nk5}</p></div>";
 
 },{}],31:[function(require,module,exports){
 'use strict';

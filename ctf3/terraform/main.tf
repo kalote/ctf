@@ -58,7 +58,7 @@ EOF
   }
 
   provisioner "local-exec" {
-    command = "export AWS_PROFILE='ctf' && aws s3 sync ~/project/axa-ctf/ctf3/UXUI/ s3://${aws_s3_bucket.uxui.id}/"
+    command = "export AWS_PROFILE='ctf' && aws s3 sync ~/project/ctf/ctf3/UXUI/ s3://${aws_s3_bucket.uxui.id}/"
   }
 }
 
