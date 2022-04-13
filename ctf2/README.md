@@ -56,13 +56,13 @@ Total: 820 points (740 without k8s)
 ### Fun
 
 challenge:
-- String: bblntx{hi1w_rfy_1fj3ox3o_d0mwhi1rr_lw3k0af}
+- String: dsxaafmdxq{eh1k_uvc_1yg3nl3r_t0qpeh1fu_ba3d0xe}
 - Hint: What is the last name of the REAL inventor of this famous "unbreakable" cipher (among the top 3 cipher)?
 
 ### Fun 2
 
 challenge: 
-- String: aaxxxxaxaaaaxxxxaaxxxxaxaaxxxaaxaaaxaxxxaaxxaaxxaaaaxaaxaaxxxaaxaaaxxaxxaaaaxxaxaaaxxxxxaaaxaxxxxaaxxxxxaxaaaaaxxaaxxxaxaaaxxaaxaxaaaaaxaaxxaaxxaaaxaxaxaaxaaaxxaxaaaaaxaaxxxxaxaaxaaaxxaaxxaxxxaxaaaaaxaaxaaaxxxaaxxxxxaaaxaxxxaxaaaaaxaaxxxaaxaaxaaaaxaaxaaxaxaaaxxxxxaaxaaxxxaaxaxxaxaaxxxaaxxaaxaxxxaaaxaxxxaaxxaxaxaaxxaxxxaaaaaxa
+- String: 011000110110111101101101011100000110000101101110011110010110001101110100011001100111101101100011011100100111100101110000011101000011000001011111001100010111001101011111011001100111010101101110010111110110000101101110011001000101111101101110001100000111010001011111011000110110111101101101011100000110110001101001011000110011010001110100011001010110010001111101
 
 ### Fun 3
 

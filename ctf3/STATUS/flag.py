@@ -16,7 +16,7 @@ printable = printable.replace("}", "")
 
 printable = "_}" + printable
 
-seen = list("axactf{")
+seen = list("companyctf{")
 
 s = remote(host, port)
 while 1:

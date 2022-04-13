@@ -9,4 +9,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: vulnerable-account
-    namespace: axactf-dev-axa-li-jp
+    namespace: companyctf-dev-axa-li-jp

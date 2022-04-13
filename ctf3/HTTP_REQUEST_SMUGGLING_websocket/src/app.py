@@ -22,7 +22,7 @@ class InternalAPI(Resource):
 
 class Flag(Resource):
     def get(self):
-        return {'flag': 'axactf{In_50VI37_rUS5Ia_vODK@_DRiNKs_YOu}'}
+        return {'flag': 'companyctf{In_50VI37_rUS5Ia_vODK@_DRiNKs_YOu}'}
 
 
 api.add_resource(Flag, '/flag')

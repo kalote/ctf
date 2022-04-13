@@ -26,7 +26,7 @@ if (array_key_exists("username", $_REQUEST)) {
   
   $res = mysql_query($query, $link);
   if (mysql_num_rows($res) > 0) {
-    echo "Successful login! Password is 'axactf{th4t_w45_s0m3_v2ry_b4s1c_stuff}'.<br>";
+    echo "Successful login! Password is 'companyctf{th4t_w45_s0m3_v2ry_b4s1c_stuff}'.<br>";
   } else {
     echo "Access denied!<br>";
   }

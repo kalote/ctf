@@ -13,7 +13,7 @@ async function loopThrough() {
       try {
         let options = {
           method: "GET",
-          uri: "https://md5.axa-li-jp-dev-int.pink.ap-southeast-1.aws.openpaas.axa-cloud.com/",
+          uri: "https://md5.yourdomain.com/",
           qs: {
             pass: iter
           },

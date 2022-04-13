@@ -1,7 +1,7 @@
-# AXA CTF 1
+# CTF 1
 
-First AXA Life Japan CTF repository. We used OWASP juice-shop as the base challenge and CTFd as the central platform for all teams.
-We decided to deploy 8 instance of the vulnerable juice-shop image on openpaas and the CTFd central platform on an ec2 instance.
+First CTF repository. OWASP juice-shop as the base challenge and CTFd as the central platform for all teams.
+Instances of the vulnerable juice-shop image can be deployed on OpenShift / K8s, and the CTFd central platform can be deployed on an ec2 instance.
 
 ## Installation
 

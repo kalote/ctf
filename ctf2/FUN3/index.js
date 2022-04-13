@@ -9,10 +9,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
-  if (req.headers['user-agent'] != 'AxaBrowser') {
+  if (req.headers['user-agent'] != 'CompanyBrowser') {
     return res.send(`We stole your flag!
 To get it back, you need to follow our instructions.
-First you must use the [AxaBrowser]! Other web browser will be denied!`);
+First you must use the Company Browser! Other web browsers will be denied!`);
   }
 
   if (req.method == 'GET') {
@@ -32,13 +32,13 @@ app.post('/', (req, res) => {
       return res.send('You have to provide some data ...');
     } else {
       if (!req.headers['x-forwarded-for'] || req.headers['x-forwarded-for'].split('.')[0] === '10') {
-        return res.send(`We change our mind! We will only answer if you come at our home to discuss!
-Tips: Find a "X-" header that can help us define from where you call us.
+        return res.send(`We change our mind! We will only answer if you come to our home to discuss!
+Tips: Find a "X-" header that can help you define from where you call us.
 `);
       } else if (req.headers['x-forwarded-for'].indexOf('localhost') > -1) {
         return res.send('Give us numbers!');
       } else if (req.headers['x-forwarded-for'].indexOf('127.0.0.1') > -1) {
-        if (req.body.amount == '1000000' && req.body.currency == 'dollar') {
+        if (req.body.amount == '1000000' && req.body.currency == 'eth') {
           return res.send(`Thanks. It's a pleasure doing business with you!
 Here is your flag: ${process.env.FLAG}
 `);
@@ -46,7 +46,7 @@ Here is your flag: ${process.env.FLAG}
           return res.send(`Ok, now we can talk.
 Here's what we want:
 - amount: 1000000
-- currency: dollar
+- currency: eth
 We want a clean object, that we can convert in other currencies if we want.
 You will receive your flag once the deal is made.
 `);

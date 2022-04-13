@@ -4,7 +4,7 @@ function isLocalhost($whitelist = ['localhost', '127.0.0.1', '::1']) {
 }
 
 if (isLocalhost()) {
-	die("axactf{th4t_w45_50m3_4w350m3_j0b_th4t_y0u_d1d_th3r3} ");
+	die("companyctf{th4t_w45_50m3_4w350m3_j0b_th4t_y0u_d1d_th3r3} ");
 }
 
 function parseXml($doc) {

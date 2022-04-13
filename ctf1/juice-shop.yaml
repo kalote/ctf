@@ -13,7 +13,7 @@ objects:
       router: internal
     name: "${NAME}"
   spec:
-    host: "juice-${NAME}.axa-li-jp-dev-int.pink.ap-southeast-1.aws.openpaas.axa-cloud.com"
+    host: "juice-${NAME}"
     port:
       targetPort: 3000-tcp
     tls:

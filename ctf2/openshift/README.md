@@ -16,7 +16,7 @@
 - change the dc to use the service account
 - create another openpaas project ("project2") and select it (`oc project project2`)
 - add admin role to serviceaccount on project2 (`oc create -f openshift/rb.yaml`)
-- create the secret: `oc create secret generic axactf --from-literal=flag=axactf{ev3n_kub3rne7es_1s_not_s4fe}`
+- create the secret: `oc create secret generic companyctf --from-literal=flag=companyctf{ev3n_kub3rne7es_1s_not_s4fe}`
 
 ## MD5
 

@@ -1,21 +1,21 @@
 version: '3'
 services:
   web1:
-    image: quay.io/kalote/axactf_sql1:1.0
+    image: quay.io/kalote/companyctf_sql1:1.0
     ports:
       - "5000:80"
     depends_on: 
       - mysql
   
   web2:
-    image: quay.io/kalote/axactf_sql2:1.0
+    image: quay.io/kalote/companyctf_sql2:1.0
     ports:
       - "5001:80"
     depends_on: 
       - mysql
 
   web3:
-    image: quay.io/kalote/axactf_sql3:1.0
+    image: quay.io/kalote/companyctf_sql3:1.0
     ports:
       - "5002:80"
     depends_on: 
